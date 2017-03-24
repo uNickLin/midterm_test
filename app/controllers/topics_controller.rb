@@ -14,9 +14,11 @@ class TopicsController < ApplicationController
 
 	def create
 		@topic = Topic.new(topic_params)
-		@topic.save
-
-		redirect_to topics_path
+		if @topic.save
+			redirect_to topics_path
+		else
+			render :new
+		end
 		
 	end
 
@@ -29,9 +31,11 @@ class TopicsController < ApplicationController
 	end
 
 	def update
-		@topic.update(topic_params)
-
-		redirect_to topic_path(@topic)
+		if @topic.update(topic_params)
+			redirect_to topic_path(@topic)
+		else
+			render :edit
+		end
 
 	end
 

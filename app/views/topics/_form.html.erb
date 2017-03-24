@@ -1,3 +1,12 @@
+<% if @topic.errors.any? %>
+ <ul>
+   <% @topic.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+   <% end %>
+ </ul>
+<% end %>
+
+
 <%= form_for @topic do |n| %>
 	<%= n.label :title, 'Title : ' %>
 	<%= n.text_field :title %>

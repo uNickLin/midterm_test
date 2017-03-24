@@ -59,9 +59,8 @@ class TopicsController < ApplicationController
 	end
 
 	def comments
-		@comment = Comment.new(comment_params)
+		@comment = @topic.comments.new(comment_params)
 		@comment.user = current_user
-		# byebug
 		@comment.save!
 
 		redirect_to topic_path(@topic)

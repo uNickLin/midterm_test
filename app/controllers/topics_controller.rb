@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
 	before_action :find_topic, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@topics = Topic.all
+		@topics = Topic.page(params[:page]).per(10).order('created_at DESC')
 		
 	end
 

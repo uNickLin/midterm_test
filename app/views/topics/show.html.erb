@@ -17,11 +17,18 @@
 	</tr>
 </table>
 
-
 <%= link_to 'BACK', topics_path %>
 
 
-<!-- 
-	類別 ： <%= @topic.category.name %>
-	內容 ： <%= @topic.content %>
- -->
+<hr>
+<% @comments.each do |c| %>
+	<%= c.user.email %><br>
+	<%= c.description %><br>
+<% end %>
+
+<%= simple_form_for @comment, url:comment_topic_path(@topic)  do |n| %>
+	<div class="form-group">
+	    <%= n.input :description, input_html: { class: "form-control"} %>
+	</div>
+	<%= n.submit %>
+<% end %>

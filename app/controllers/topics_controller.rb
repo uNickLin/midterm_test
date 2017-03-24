@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-	before_action :find_topic, only: [:show, :edit, :update, :destroy]
+	before_action :find_topic, only: [:show, :edit, :update, :destroy, :comment]
 	before_action :authenticate_user!, except: [:index]
 
 	def index
@@ -32,6 +32,9 @@ class TopicsController < ApplicationController
 	end
 
 	def show
+		@comment = Comment.new
+		@comments = Comment.all
+
 		
 	end
 
@@ -55,12 +58,26 @@ class TopicsController < ApplicationController
 		
 	end
 
+	def comment
+		@comment = Comment.new(comment_params)
+		@comment.user = current_user
+		@comment.save
+
+		redirect_to topic_path(@topic)
+		
+	end
+
 
 
 	private
 
 	def topic_params
 		params.require(:topic).permit(:title, :content, :category_id, :user_id)
+		
+	end
+
+	def comment_params
+		params.require(:comment).permit(:description, :topic_id, :user_id)
 		
 	end
 

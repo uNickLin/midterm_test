@@ -1,0 +1,12 @@
+<%= form_for @topic do |n| %>
+	<%= n.label :title, 'Title : ' %>
+	<%= n.text_field :title %>
+
+	<%= n.collection_select(:category_id, Category.all, :id, :name, prompt: "請選擇分類") %>
+
+	<%= n.label :title, 'Content : ' %>
+	<%= n.text_field :content %>
+
+	<%= n.submit button, class: 'btn btn-warning' %>
+	<%= link_to 'CANCEL', topics_path, class: 'btn btn-info' %>
+<% end %>

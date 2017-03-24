@@ -4,6 +4,12 @@ class TopicsController < ApplicationController
 
 	def index
 		@topics = Topic.page(params[:page]).per(10).order('created_at DESC')
+
+		if params[:id]
+      @topic = Topic.find(params[:id])
+    else
+      @topic = Topic.new
+    end
 		
 	end
 

@@ -1,22 +1,38 @@
-<div class="container"></div>
+<div class="container">
 	<div class="header">
 		<h1>寇汀災情支援網</h1>
 		<subtitle>Coding Recue Network</subtitle>
 	</div>
 	
-	<div class="new_btn">
-		<%= link_to 'POST', new_topic_path, class: 'btn btn-success' %>
-	</div>
-	
+	<% if @topic.errors.any? %>
+	 <ul>
+	   <% @topic.errors.full_messages.each do |msg| %>
+	     <li><%= msg %></li>
+	   <% end %>
+	 </ul>
+	<% end %>
+
+	<%= simple_form_for @topic do |n| %>
+		
+		<div class="form-group">
+	    <%= n.input :title, input_html: { class: "form-control"} %>
+	   	<%= n.collection_select(:category_id, Category.all, :id, :name, prompt: "請選擇分類") %>
+	    <%= n.input :content, input_html: { class: "form-control"} %>
+	  </div>
+
+		<%= n.submit 'POST', class: 'btn btn-warning' %>
+		<%= link_to 'CANCEL', topics_path, class: 'btn btn-info' %>
+	<% end %>
+
 	<div class="pagination">
 		<%= paginate @topics %>
 	</div>
 
-	<table>
+	<table class="table table-hover text-center">
 		<tr>
-			<th>Category</th>
-			<th>Title</th>
-			<th>Created at</th>
+			<th>類別</th>
+			<th>標題</th>
+			<th>建立日期</th>
 			<th></th>
 		</tr>
 			<% @topics.each do |t| %>
@@ -35,3 +51,4 @@
 	<div class="pagination">
 		<%= paginate @topics %>
 	</div>
+</div>

@@ -25,8 +25,10 @@
 				<td><%= link_to t.title, topic_path(t) %></td>
 				<td><%= t.created_at.to_date %></td>
 				<td>
-					<%= link_to 'EDIT', edit_topic_path(t), class: "btn btn-primary btn-sm" %>
-					<%= link_to 'DEL', topic_path(t), method: :delete, data:{ confirm: 'Are you sure ?' }, class: "btn btn-danger btn-sm" %>
+					<% if current_user && current_user.is_creator?(t) %>
+						<%= link_to 'EDIT', edit_topic_path(t), class: "btn btn-primary btn-sm" %>
+						<%= link_to 'DEL', topic_path(t), method: :delete, data:{ confirm: 'Are you sure ?' }, class: "btn btn-danger btn-sm" %>
+					<% end %>
 				</td>
 		</tr>
 			<% end %>

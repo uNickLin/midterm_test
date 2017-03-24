@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
 
 	before_action :find_topic, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, except: [:index]
 
 	def index
 		@topics = Topic.page(params[:page]).per(10).order('created_at DESC')
@@ -20,6 +21,8 @@ class TopicsController < ApplicationController
 
 	def create
 		@topic = Topic.new(topic_params)
+		@topic.user = current_user
+
 		if @topic.save
 			redirect_to topics_path
 		else
@@ -57,7 +60,7 @@ class TopicsController < ApplicationController
 	private
 
 	def topic_params
-		params.require(:topic).permit(:title, :content, :category_id)
+		params.require(:topic).permit(:title, :content, :category_id, :user_id)
 		
 	end
 

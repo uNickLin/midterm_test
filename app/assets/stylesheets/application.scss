@@ -1,2 +1,35 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+*{
+	// border: solid 1px;
+}
+
+body{
+	background-color: #0881A3;
+}
+
+th{
+	text-align: center;
+}
+
+th:after{
+	word-break:break-word;
+}
+
+
+.container{
+	background-color: #F9F8ED;
+	margin-top: 5vh;
+	border-radius: 30px 60px 30px 60px;
+	padding: 30px;
+	box-shadow: 2px 2px 8px 5px rgba(0,0,0,.6);
+}
+
+.pagination{
+	margin: auto;
+	float: right;
+	position: relative;
+	right: 50%;
+	transform: translateX(50%);
+}

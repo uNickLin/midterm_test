@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-	before_action :find_topic, only: [:show, :edit, :update, :destroy, :comment]
+	before_action :find_topic, only: [:show, :edit, :update, :destroy, :comments]
 	before_action :authenticate_user!, except: [:index]
 
 	def index
@@ -58,10 +58,11 @@ class TopicsController < ApplicationController
 		
 	end
 
-	def comment
+	def comments
 		@comment = Comment.new(comment_params)
 		@comment.user = current_user
-		@comment.save
+		# byebug
+		@comment.save!
 
 		redirect_to topic_path(@topic)
 		

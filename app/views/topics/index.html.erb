@@ -1,40 +1,38 @@
-<div class="container">
-	<div class="header">
-		<h1>寇汀災情支援網</h1>
-		<subtitle>Coding Recue Network</subtitle>
-	</div>
-	
-	<div class="new_post">
-		<%= link_to 'POST', new_topic_path(@topic), class: 'btn btn-success' %>
-	</div>
+<div class="header">
+	<h1>寇汀災情支援網</h1>
+	<subtitle>Coding Recue Network</subtitle>
+</div>
 
-	<div class="pagination">
-		<%= paginate @topics %>
-	</div>
+<div class="new_post">
+	<%= link_to 'POST', new_topic_path(@topic), class: 'btn btn-success' %>
+</div>
 
-	<table class="table table-hover text-center">
-		<tr>
-			<th>類別</th>
-			<th>標題</th>
-			<th>建立日期</th>
-			<th></th>
-		</tr>
-			<% @topics.each do |t| %>
-		<tr>
-				<td>【<%= t.category.name %>】</td>
-				<td><%= link_to t.title, topic_path(t) %></td>
-				<td><%= t.created_at.to_date %></td>
-				<td>
-					<% if current_user && current_user.is_creator?(t) %>
-						<%= link_to 'EDIT', edit_topic_path(t), class: "btn btn-primary btn-sm" %>
-						<%= link_to 'DEL', topic_path(t), method: :delete, data:{ confirm: 'Are you sure ?' }, class: "btn btn-danger btn-sm" %>
-					<% end %>
-				</td>
-		</tr>
-			<% end %>
-	</table>
+<div class="pagination">
+	<%= paginate @topics %>
+</div>
 
-	<div class="pagination">
-		<%= paginate @topics %>
-	</div>
+<table class="table table-hover text-center">
+	<tr>
+		<th>類別</th>
+		<th>標題</th>
+		<th>建立日期</th>
+		<th></th>
+	</tr>
+		<% @topics.each do |t| %>
+	<tr>
+			<td>【<%= t.category.name %>】</td>
+			<td><%= link_to t.title, topic_path(t) %></td>
+			<td><%= t.created_at.to_date %></td>
+			<td>
+				<% if current_user && current_user.is_creator?(t) %>
+					<%= link_to 'EDIT', edit_topic_path(t), class: "btn btn-primary btn-sm" %>
+					<%= link_to 'DEL', topic_path(t), method: :delete, data:{ confirm: 'Are you sure ?' }, class: "btn btn-danger btn-sm" %>
+				<% end %>
+			</td>
+	</tr>
+		<% end %>
+</table>
+
+<div class="pagination">
+	<%= paginate @topics %>
 </div>

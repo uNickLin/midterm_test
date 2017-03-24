@@ -26,9 +26,10 @@
 	<%= c.description %><br>
 <% end %>
 
-<%= simple_form_for @comment, url:comment_topic_path(@topic)  do |n| %>
+<%= simple_form_for @comment, url:comments_topic_path(@topic)  do |n| %>
 	<div class="form-group">
-	    <%= n.input :description, input_html: { class: "form-control"} %>
+		<%= n.input :topic_id, input_html: { value: @topic.id }, :as => :hidden %>
+    <%= n.input :description, input_html: { class: "form-control"} %>
 	</div>
 	<%= n.submit %>
 <% end %>

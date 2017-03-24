@@ -1,0 +1,27 @@
+<h2><%= @topic.title %></h2>
+
+
+
+<table>
+	<tr>
+		<th>類別</th>
+		<td>【<%= @topic.category.name %>】</td>
+	</tr>
+	<tr>
+		<th>建立日期</th>
+		<td><%= @topic.created_at.to_date %></td>
+	</tr>	
+	<tr>
+		<th>內容</th>
+		<td><%= @topic.content %></td>
+	</tr>
+</table>
+
+
+<%= link_to 'BACK', topics_path %>
+
+
+<!-- 
+	類別 ： <%= @topic.category.name %>
+	內容 ： <%= @topic.content %>
+ -->

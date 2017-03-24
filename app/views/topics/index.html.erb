@@ -18,7 +18,9 @@
 				<td>【<%= t.category.name %>】</td>
 				<td><%= link_to t.title, topic_path(t) %></td>
 				<td><%= t.created_at.to_date %></td>
-				<td></td>
+				<td>
+					<%= link_to 'EDIT', edit_topic_path(t), class: "btn btn-primary btn-sm" %>
+				</td>
 		</tr>
 			<% end %>
 	</table>		

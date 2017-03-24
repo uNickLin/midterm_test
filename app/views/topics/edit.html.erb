@@ -1,4 +1,4 @@
-<h2>Post an article</h2>
+<h2><%= @topic.title %></h2>
 
 <%= form_for @topic do |n| %>
 	<%= n.label :title, 'Title : ' %>
@@ -9,6 +9,6 @@
 	<%= n.label :title, 'Content : ' %>
 	<%= n.text_field :content %>
 
-	<%= n.submit 'POST' %>
+	<%= n.submit 'UPDATE' %>
 	<%= link_to 'CANCEL', topics_path %>
 <% end %>
